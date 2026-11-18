@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar: pre-token protocols ranked by fitted implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <h1>Token Radar</h1>
+    <p class="sub" id="headline">Loading the snapshot…</p>
+    <p class="strip" id="validstrip" aria-label="Validation summary"></p>
+    <nav class="tabs" aria-label="Views">
+      <a href="#/board" id="tab-board">Board</a>
+      <a href="#/live" id="tab-live">Already trades</a>
+      <a href="#/method" id="tab-method">Method &amp; accounting</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <section id="view-board" aria-label="Ranked board">
+    <form id="filters" aria-label="Board filters">
+      <label>Search <input id="f-q" type="search" placeholder="Name, slug or category" autocomplete="off"></label>
+      <label>Category <select id="f-cat"><option value="">All categories</option></select></label>
+      <label>Chain <select id="f-chain"><option value="">All chains</option></select></label>
+      <label>Confidence <select id="f-conf"><option value="">Any</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select></label>
+      <label>Verdict <select id="f-verdict"><option value="">Any</option><option value="farm">Farm</option><option value="thin">Thin</option><option value="skip">Skip</option></select></label>
+      <label class="check"><input id="f-watch" type="checkbox"> Watchlist only</label>
+      <span id="f-count" class="count" aria-live="polite"></span>
+    </form>
+    <div class="tablewrap"><table id="board" aria-label="Protocols ranked by implied value"></table></div>
+    <p class="note">Implied value is this radar's own claim from the sealed snapshot, never a prediction that a token launches. Intervals and rank ranges come from 200 bootstrap refits of the fitted model. Open a row for its full breakdown and costed farm plan.</p>
+  </section>
+  <section id="view-live" aria-label="Protocols whose token already trades" hidden>
+    <p class="note">These protocols already record a token, so the board shows the market's own value — market cap and the market-cap/TVL multiple — never a modelled one. The 119 peers the model fits from are drawn from this set.</p>
+    <div class="tablewrap"><table id="livetable" aria-label="Live-token protocols"></table></div>
+  </section>
+  <section id="view-method" aria-label="Method, validation and accounting" hidden>
+    <div id="method"></div>
+  </section>
+  <section id="view-detail" aria-label="Protocol detail" hidden>
+    <p><a href="#/board" class="back">&larr; Back to the board</a></p>
+    <div id="detail"></div>
+  </section>
+</main>
+<footer class="wrap"><p id="foot"></p></footer>
+<script src="../data.js"></script>
+<script src="summary.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
